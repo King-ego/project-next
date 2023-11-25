@@ -1,9 +1,10 @@
 import Api from "../api";
 import {AxiosResponse} from "axios";
-import Users from "@/model/Users";
+import {Users} from "@/model/Users";
+import IUserGateway from "@/services/interface/users";
 
-export default class UsersGateway {
-    static async getAllUsers(): Promise<Users[] | any> {
+class UsersGateway implements IUserGateway{
+    public async getAllUsers(): Promise<Users[] | void> {
         try {
             const users: AxiosResponse<Users[]> = await Api.get("users");
             return users.data;
@@ -13,3 +14,6 @@ export default class UsersGateway {
 
     }
 }
+
+// eslint-disable-next-line import/no-anonymous-default-export
+export default new UsersGateway();

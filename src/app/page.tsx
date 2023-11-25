@@ -2,10 +2,10 @@ import UsersGateway from "@/services/users";
 import {FormatDate} from "@/utils/date";
 import Link from "next/link";
 import Button from "@/componets/Button";
-import Users from "@/model/Users";
+import {Users} from "@/model/Users";
 
 export default async function Home() {
-    const users = await UsersGateway.getAllUsers();
+    const users = await UsersGateway.getAllUsers() || [];
 
     return (
         <div className={`
