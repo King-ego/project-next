@@ -4,8 +4,11 @@ import Link from "next/link";
 import Button from "@/componets/Button";
 import {Users} from "@/model/Users";
 
+import Authorization from "../utils/cookie/serverCookie"
+
+
 export default async function Home() {
-    const users = await UsersGateway.getAllUsers() || [];
+    const users = await UsersGateway.getAllUsers({Authorization}) || [];
 
     return (
         <div className={`
