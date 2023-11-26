@@ -1,8 +1,9 @@
-import Api from "../api";
+
 import {AxiosResponse} from "axios";
 import {Users} from "@/model/Users";
 import IUserGateway from "@/services/interface/users";
 import IGetAllUsers from "@/services/interface/users/props/IGetAllUsers";
+import Api from "@/services/http/api";
 
 class UsersGatewayClass implements IUserGateway{
     public async getAllUsers({Authorization}: IGetAllUsers): Promise<Users[] | void> {

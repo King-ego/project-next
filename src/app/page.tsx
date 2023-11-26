@@ -1,10 +1,10 @@
-import UsersGateway from "../services/http/users";
+import UsersGateway from "../services/http/modules/users";
 import {FormatDate} from "@/utils/date";
 import Link from "next/link";
 import Button from "@/componets/Button";
 import {Users} from "@/model/Users";
 
-import Authorization from "../utils/cookie/serverCookie"
+import Authorization from "@/services/http/cookie/serverCookie"
 
 
 export default async function Home() {

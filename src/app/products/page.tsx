@@ -1,6 +1,7 @@
-import ProductsGateway from "../../services/http/products"
+import ProductsGateway from "@/services/http/modules/products";
+
 export default async function Products() {
-    const products = await ProductsGateway.listAllProducts() || []
+    const products = await ProductsGateway().listAllProducts() || []
     return(
         <div>
             {products && products?.map(product=> (
