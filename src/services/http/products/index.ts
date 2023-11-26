@@ -1,6 +1,6 @@
 import IProductsGateway from "@/services/interface/products";
 import {Products} from "@/model/Products";
-import Api from "@/services/api";
+import Api from "@/services/http/api";
 
 class ProductsGateway implements IProductsGateway {
     public async listAllProducts(): Promise<Products[] | void> {

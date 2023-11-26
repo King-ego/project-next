@@ -1,8 +1,7 @@
 import {Users} from "@/model/Users";
+import IGetAllUsers from "@/services/interface/users/props/IGetAllUsers";
 
-export interface IGetAllUsers {
-    Authorization: string
-}
+
 export default interface IUserGateway {
     getAllUsers({}:IGetAllUsers): Promise<Users[] | void>;
 }

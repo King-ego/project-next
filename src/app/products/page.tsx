@@ -1,4 +1,4 @@
-import ProductsGateway from "../../services/products"
+import ProductsGateway from "../../services/http/products"
 export default async function Products() {
     const products = await ProductsGateway.listAllProducts() || []
     return(

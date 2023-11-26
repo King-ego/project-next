@@ -1,13 +1,13 @@
 "use client"
 import {useEffect, useState} from "react";
-import UserGateway from "../../services/users"
+import UserGateway from "../../services/http/users"
 import Authorization from "@/utils/cookie/clientCookie";
 import {Users} from "@/model/Users";
 
 export default function Page() {
     const [users, setUsers] = useState<Users[]>([])
     const b = async () => {
-        const a = await UserGateway.getAllUsers({Authorization});
+        const a = await UserGateway().getAllUsers({Authorization});
         if(a) setUsers(a);
         console.log({a});
     }

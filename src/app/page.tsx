@@ -1,4 +1,4 @@
-import UsersGateway from "@/services/users";
+import UsersGateway from "../services/http/users";
 import {FormatDate} from "@/utils/date";
 import Link from "next/link";
 import Button from "@/componets/Button";
@@ -8,7 +8,7 @@ import Authorization from "../utils/cookie/serverCookie"
 
 
 export default async function Home() {
-    const users = await UsersGateway.getAllUsers({Authorization}) || [];
+    const users = await UsersGateway().getAllUsers({Authorization}) || [];
 
     return (
         <div className={`

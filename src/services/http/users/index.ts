@@ -1,9 +1,10 @@
 import Api from "../api";
 import {AxiosResponse} from "axios";
 import {Users} from "@/model/Users";
-import IUserGateway, {IGetAllUsers} from "@/services/interface/users";
+import IUserGateway from "@/services/interface/users";
+import IGetAllUsers from "@/services/interface/users/props/IGetAllUsers";
 
-class UsersGateway implements IUserGateway{
+class UsersGatewayClass implements IUserGateway{
     public async getAllUsers({Authorization}: IGetAllUsers): Promise<Users[] | void> {
         try {
             const users: AxiosResponse<Users[]> = await Api.get("users", {
@@ -19,5 +20,7 @@ class UsersGateway implements IUserGateway{
     }
 }
 
-// eslint-disable-next-line import/no-anonymous-default-export
-export default new UsersGateway();
+
+export default function UsersGateway(){
+    return new UsersGatewayClass()
+};
