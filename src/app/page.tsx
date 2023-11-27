@@ -1,34 +1,35 @@
-import UsersGateway from "../services/http/modules/users";
-import {FormatDate} from "@/utils/date";
-import Link from "next/link";
-import Button from "@/componets/Button";
-import {Users} from "@/model/Users";
+import ProductsGateway from "@/services/http/modules/products";
+import {Price} from "@/app/styled";
+import Currency from "@/utils/currency";
+import ImageFromApi from "@/componets/ImageFromApi";
+import Image from "next/image";
 
-import Authorization from "@/services/http/cookie/serverCookie"
-
-
-export default async function Home() {
-    const users = await UsersGateway().getAllUsers({Authorization}) || [];
-
+export default async function Products() {
+    const products = await ProductsGateway().listAllProducts() || [];
     return (
         <div className={`
-            bg-amber-50 flex flex-col gap-2 justify-center items-center
+            flex items-center justify-center gap-10 flex-wrap
         `}>
-            {users && users?.map((user: Users) => (
-                <div key={user.id} className={`
-                    bg-gray-500 w-full flex justify-around text-black flex-wrap gap-2
+            {products && products?.map(product => (
+                <div key={product.id} className={`
+                    flex items-center justify-center bg-gray-300 flex-col text-black rounded-2xl overflow-hidden w-80
                 `}>
-                    <p>{user.name}</p>
-                    <p>{user.email}</p>
-                    <p>{FormatDate(user.created_at)}</p>
-                    <p>{FormatDate(user.updated_at)}</p>
-                    <Link href={`/brt/${user.id}`}>Vai</Link>
-                </div>
-            ))}
-            <Button
-                size="default"
-                className="bg-cyan-400 rounded-2xl p-2"
-            >Clique</Button>
+                    <div className={`
+                        w-full h-52 bg-black relative overflow-hidden
+                    `}>
+                        {product?.images?.length ? (
+                            <ImageFromApi fileName={product.images[0].filename}/>
+                        ): <Image src="/images/image-not.png" fill alt="image não encontrada"/>}
+                    </div>
+                    <p>{product.amount}</p>
+                    <p>{product.name}</p>
+                    <p>{product.description}</p>
+                    <div className={`flex gap-2`}>
+                        <p className={Price({line: product.discount ? "through" : "default"})}>{Currency(product.price)}</p>
+                        <p>{Currency(product.price - product.price * (product.discount / 100))}</p>
+                    </div>
+                </div>)
+            )}
         </div>
     )
 }

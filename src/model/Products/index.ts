@@ -8,5 +8,6 @@ export interface Products {
         discount: number;
         created_at: string;
         updated_at: string;
+        description: string;
         images: Images[] | [];
     }

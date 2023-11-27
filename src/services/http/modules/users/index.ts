@@ -15,7 +15,7 @@ class UsersGatewayClass implements IUserGateway{
             });
             return users.data;
         } catch (err) {
-            console.log((err as unknown as any)?.response.data)
+            console.log(err)
         }
 
     }
